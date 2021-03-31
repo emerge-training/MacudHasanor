@@ -1,0 +1,10 @@
+{
+    vendorId "eqela"
+    projectID "helloworld"
+    title "Simple Hello World"
+    copyright "Copyright (C) 2021 Eqela"
+    license "All rights reserved."
+    libraries [
+            "jk-app:0.25.0"
+    ]
+}
