@@ -14,14 +14,14 @@ func create(context as GuiApplicationContext, parentWidget as Widget = null) sta
 {
     assert context
     instance = new this()
-    instance.setApiUrl("http://ec2-13-212-188-112.ap-southeast-1.compute.amazonaws.com:30619")
+    instance.setApiUrl("http://ec2-54-255-198-53.ap-southeast-1.compute.amazonaws.com:30601")
     instance.setContext(context)
     if parentWidget:
         instance.setParentWidget(parentWidget)
     return instance
 }
 
-func onError(error as Error, callback as function<void,Error>) override
+func onError(error as Error, callback as function<void, Error>) override
 {
     assert callback:
         onDefaultErrorHandler(error)
@@ -48,3 +48,4 @@ func deleteTask(id as string, callback as function<void, DynamicMap>, errorCallb
 
 func getTasks(callback as function<void, DynamicMap>, errorCallback as function<void, Error> = null):
     doGet("/tasks", callback, errorCallback)
+    

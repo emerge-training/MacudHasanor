@@ -23,7 +23,7 @@ func forContext(ctx as LoggingContext) static as this
 {
     var cstr = EnvironmentVariable.get("TASK_DATABASE")
     Log.debug(ctx, "Opening database connection: '" .. cstr .. "'")
-    db = MySQLDatabase.forConnectionStringSync(ctx, cstr)
+    db = MySQLDatabase.forConnectionStringSync(ctx, "localhost:hasanor:hasanor:hasanor:ssl:utf8")
     if not db:
         Error.throw("failedToConnectToDatabase", cstr)
     var v = new this()
@@ -34,7 +34,7 @@ func forContext(ctx as LoggingContext) static as this
 func updateTable(table as SQLTableInfo)
 {
     if not table:
-        Error.throw("nullTable", "updateTable")
+        Error.throw("nullTable","updateTable")
     if not db:
         Error.throw("nullDb", "updateTable")
     if not db.ensureTableExistsSync(table):
@@ -55,7 +55,6 @@ func updateTables
 func addTask(task as Task) as Task
 {
     assert task
-    task.setId("1")
     task.setTimeStampAddedValue(SystemClock.asUTCSeconds())
     assert db.executeSync(db.prepareInsertStatementSync(TASK, task.toDynamicMap()))
     return task
@@ -82,7 +81,7 @@ func getTasks as DynamicMap
     var v = new vector<Task>
     var it = assert db.querySync(db.prepareQueryAllStatementSync(TASK)):
         return null
-    while it {
+    while it{
         var o = it.next()
         if not o:
             break

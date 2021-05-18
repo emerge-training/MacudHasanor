@@ -8,7 +8,7 @@ func getAllowedOrigins as array
     return [
         "http://localhost:8080",
         "http://localhost:8081",
-        "http://ec2-13-212-188-112.ap-southeast-1.compute.amazonaws.com:30916"
+        "http://ec2-54-255-198-53.ap-southeast-1.compute.amazonaws.com:30602"
     ]
 }
 
@@ -19,4 +19,3 @@ func getCorsUtil as HTTPServerCORSUtil
         allowed += String.asString(origin)
     return HTTPServerCORSUtil.forWhitelist(allowed)
 }
-

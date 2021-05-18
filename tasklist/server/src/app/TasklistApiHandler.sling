@@ -5,6 +5,7 @@ class is HTTPRPCRouter #webapi2:
 
 model TaskRequest
 {
+    id as string
     name as string
     description as string
 }
@@ -35,6 +36,7 @@ POST "/task"
     var requestData = assert TaskRequest.forJsonString(req.getBodyString()):
         sendError "invalidRequest"
     var task = new TasklistDatabase.Task()
+    task.setId(requestData.getId())
     task.setName(requestData.getName())
     task.setDescription(requestData.getDescription())
     assert getDatabase().addTask(task):
@@ -60,5 +62,3 @@ DELETE "/task/:id"
         sendError "failedToDeleteTask"
     sendOk
 }
-
-

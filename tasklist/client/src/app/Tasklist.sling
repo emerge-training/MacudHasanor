@@ -4,11 +4,11 @@ class is TitledWidget #widget:
 
 ui LayerWidget
 {
-    VerticalScrollerWidget {
+    VerticalScrollerWidget{
         scrollBarDisabled = true
-        LayerWithBackgroundColorWidget container {
+        LayerWithBackgroundColorWidget container{
             color = Color.white()
-            VerticalBoxWidget list {
+            VerticalBoxWidget list{
                 margin = context.getHeightValue("5mm")
                 spacing = context.getHeightValue("5mm")
             }
@@ -19,11 +19,11 @@ ui LayerWidget
 func initializeWidget override
 {
     base.initializeWidget()
-    APIClient.getInstance().getTasks(func(response as DynamicMap) {
+    APIClient.getInstance().getTasks(func(response as DynamicMap){
         var data = assert response.getDynamicMap("data")
         var records = data.getDynamicVector("records")
-        if not records || records.getSize() < 1 {
-            list.addWidget(AlignWidget.forWidget(context, LabelWidget.forText(context, "hasanor")), 1.0)
+        if not records || records.getSize() < 1{
+            list.addWidget(AlignWidget.forWidget(context, LabelWidget.forText(context, "No Record")), 1.0)
         }
         else {
             foreach record as DynamicMap in records.toVector() {
@@ -38,5 +38,5 @@ func initializeWidget override
 }
 
 func getWidgetTitle as string:
-    return "Task list"
+    return "Eqela Task list"
     
