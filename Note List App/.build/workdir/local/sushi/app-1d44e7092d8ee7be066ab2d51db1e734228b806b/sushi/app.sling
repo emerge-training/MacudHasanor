@@ -1,0 +1,48 @@
+class name app.NoteListDatabase header public
+{
+	import jk.lang
+	import jk.log
+	import jk.sqlite
+	import jk.mysql
+	import jk.sql
+	import jk.env
+	import jk.time
+	ctor
+	class name Note header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setId(value as string) as app.NoteListDatabase.Note
+		func getId as string
+		func setName(value as string) as app.NoteListDatabase.Note
+		func getName as string
+		func setDescription(value as string) as app.NoteListDatabase.Note
+		func getDescription as string
+		func setTimeStampAddedValue(value as long) as app.NoteListDatabase.Note
+		func getTimeStampAddedValue as long
+		func setTimeStampAdded(value as jk.lang.LongIntegerObject) as app.NoteListDatabase.Note
+		func getTimeStampAdded as jk.lang.LongIntegerObject
+		func setTimeStampLastUpdatedValue(value as long) as app.NoteListDatabase.Note
+		func getTimeStampLastUpdatedValue as long
+		func setTimeStampLastUpdated(value as jk.lang.LongIntegerObject) as app.NoteListDatabase.Note
+		func getTimeStampLastUpdated as jk.lang.LongIntegerObject
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as app.NoteListDatabase.Note
+		func forJsonObject(o as object) static as app.NoteListDatabase.Note
+	}
+	var NOTE public static const as string
+	func forContext(ctx as jk.log.LoggingContext) static as app.NoteListDatabase
+	func updateTable(table as jk.sql.SQLTableInfo)
+	func updateTables
+	func addNote(note as app.NoteListDatabase.Note) as app.NoteListDatabase.Note
+	func updateNote(id as string, note as app.NoteListDatabase.Note) as bool
+	func deleteNote(id as string) as bool
+	func getNotes as jk.lang.DynamicMap
+	func close
+	func getDb as jk.mysql.MySQLDatabase #getterMethod
+	func setDb(v as jk.mysql.MySQLDatabase) as app.NoteListDatabase #setterMethod
+}
